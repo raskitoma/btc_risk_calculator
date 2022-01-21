@@ -110,7 +110,7 @@ function ExpectBTC() {
 	} else {
 		$('#useCELLoan').addClass('btn-default').removeClass('btn-primary');
 	}
-	var MyAssets = MyBTC * BTCValue;
+	MyAssets = MyBTC * BTCValue;
 	var collateralUSD = tiers[LoanTier].value/tiers[LoanTier].pct_coll;
 	var collateralBTC = collateralUSD/BTCValue;
 	var loanCost = tiers[LoanTier].value*tiers[LoanTier].pct_loan;
@@ -138,14 +138,14 @@ function ExpectBTC() {
 	$('#grandTotalUSD').val(grandTotalUSD.toFixed(2));
 	if (grandTotalBTC < 0 ) {
 		$('#grandTotalBTC').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
-	} else if (grandTotalBTC = 0) {
+	} else if (grandTotalBTC == 0) {
 		$('#grandTotalBTC').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
 		$('#grandTotalBTC').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
 	}
 	if (grandTotalUSD < 0 ) {
 		$('#grandTotalUSD').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
-	} else if (grandTotalUSD = 0) {
+	} else if (grandTotalUSD == 0) {
 		$('#grandTotalUSD').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
 		$('#grandTotalUSD').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
@@ -157,14 +157,14 @@ function ExpectBTC() {
 	$('#grandParkedUSD').val(grandParkedUSD.toFixed(2));
 	if (grandParkedBTC < 0 ) {
 		$('#grandParkedBTC').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
-	} else if (grandParkedBTC = 0) {
+	} else if (grandParkedBTC == 0) {
 		$('#grandParkedBTC').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
 		$('#grandParkedBTC').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
 	}
 	if (grandParkedUSD < 0 ) {
 		$('#grandParkedUSD').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
-	} else if (grandParkedUSD = 0) {
+	} else if (grandParkedUSD == 0) {
 		$('#grandParkedUSD').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
 		$('#grandParkedUSD').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
