@@ -76,7 +76,7 @@ $('#useCELLoan').on('click', function() {
 });
 
 $('#generateTable').on('click', function() {
-	var table = $('#tblBreakPoint').DataTable( {
+	table = $('#tblBreakPoint').DataTable( {
         data: tableData,
         columns: [
             { title: "Crashed BTC" },
@@ -101,18 +101,14 @@ function ExpectBTC() {
 	}
 	console.log('Calculating...');
 	if(useCEL) {
-		$('#useCEL').addClass('btn-primary');
-		$('#useCEL').removeClass('btn-default');
+		$('#useCEL').addClass('btn-primary').removeClass('btn-default');
 	} else {
-		$('#useCEL').addClass('btn-default');
-		$('#useCEL').removeClass('btn-primary');
+		$('#useCEL').addClass('btn-default').removeClass('btn-primary');
 	}
 	if(useCELLoan) {
-		$('#useCELLoan').addClass('btn-primary');
-		$('#useCELLoan').removeClass('btn-default');
+		$('#useCELLoan').addClass('btn-primary').removeClass('btn-default');
 	} else {
-		$('#useCELLoan').addClass('btn-default');
-		$('#useCELLoan').removeClass('btn-primary');
+		$('#useCELLoan').addClass('btn-default').removeClass('btn-primary');
 	}
 	var MyAssets = MyBTC * BTCValue;
 	var collateralUSD = tiers[LoanTier].value/tiers[LoanTier].pct_coll;
@@ -141,42 +137,18 @@ function ExpectBTC() {
 	$('#grandTotalBTC').val(grandTotalBTC.toFixed(6));
 	$('#grandTotalUSD').val(grandTotalUSD.toFixed(2));
 	if (grandTotalBTC < 0 ) {
-		$('#grandTotalBTC').removeClass("bg-success");
-		$('#grandTotalBTC').removeClass("bg-light");
-		$('#grandTotalBTC').addClass("bg-danger");
-		$ ('#grandTotalBTC').addClass("text-white");
-		$ ('#grandTotalBTC').removeClass("text-dark");
+		$('#grandTotalBTC').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
 	} else if (grandTotalBTC = 0) {
-		$('#grandTotalBTC').removeClass("bg-danger");
-		$('#grandTotalBTC').removeClass("bg-success");
-		$('#grandTotalBTC').addClass("bg-light");
-		$ ('#grandTotalBTC').addClass("text-dark");
-		$ ('#grandTotalBTC').removeClass("text-white");
+		$('#grandTotalBTC').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
-		$('#grandTotalBTC').removeClass("bg-danger");
-		$('#grandTotalBTC').removeClass("bg-light");
-		$('#grandTotalBTC').addClass("bg-success");
-		$ ('#grandTotalBTC').addClass("text-white");
-		$ ('#grandTotalBTC').removeClass("text-dark");
+		$('#grandTotalBTC').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
 	}
 	if (grandTotalUSD < 0 ) {
-		$('#grandTotalUSD').removeClass("bg-success");
-		$('#grandTotalUSD').removeClass("bg-light");
-		$('#grandTotalUSD').addClass("bg-danger");
-		$ ('#grandTotalUSD').addClass("text-white");
-		$ ('#grandTotalUSD').removeClass("text-dark");
+		$('#grandTotalUSD').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
 	} else if (grandTotalUSD = 0) {
-		$('#grandTotalUSD').removeClass("bg-danger");
-		$('#grandTotalUSD').removeClass("bg-success");
-		$('#grandTotalUSD').addClass("bg-light");
-		$ ('#grandTotalUSD').addClass("text-dark");
-		$ ('#grandTotalUSD').removeClass("text-white");
+		$('#grandTotalUSD').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
-		$('#grandTotalUSD').removeClass("bg-danger");
-		$('#grandTotalUSD').removeClass("bg-light");
-		$('#grandTotalUSD').addClass("bg-success");
-		$ ('#grandTotalUSD').addClass("text-white");
-		$ ('#grandTotalUSD').removeClass("text-dark");
+		$('#grandTotalUSD').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
 	}
 
 	var grandParkedBTC = MyBTC * loan_pct["BTC"][useCEL ? "CEL" : "BTC"];
@@ -184,42 +156,18 @@ function ExpectBTC() {
 	$('#grandParkedBTC').val(grandParkedBTC.toFixed(6));
 	$('#grandParkedUSD').val(grandParkedUSD.toFixed(2));
 	if (grandParkedBTC < 0 ) {
-		$('#grandParkedBTC').removeClass("bg-success");
-		$('#grandParkedBTC').removeClass("bg-light");
-		$('#grandParkedBTC').addClass("bg-danger");
-		$ ('#grandParkedBTC').addClass("text-white");
-		$ ('#grandParkedBTC').removeClass("text-dark");
+		$('#grandParkedBTC').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
 	} else if (grandParkedBTC = 0) {
-		$('#grandParkedBTC').removeClass("bg-danger");
-		$('#grandParkedBTC').removeClass("bg-success");
-		$('#grandParkedBTC').addClass("bg-light");
-		$ ('#grandParkedBTC').addClass("text-dark");
-		$ ('#grandParkedBTC').removeClass("text-white");
+		$('#grandParkedBTC').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
-		$('#grandParkedBTC').removeClass("bg-danger");
-		$('#grandParkedBTC').removeClass("bg-light");
-		$('#grandParkedBTC').addClass("bg-success");
-		$ ('#grandParkedBTC').addClass("text-white");
-		$ ('#grandParkedBTC').removeClass("text-dark");
+		$('#grandParkedBTC').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
 	}
 	if (grandParkedUSD < 0 ) {
-		$('#grandParkedUSD').removeClass("bg-success");
-		$('#grandParkedUSD').removeClass("bg-light");
-		$('#grandParkedUSD').addClass("bg-danger");
-		$ ('#grandParkedUSD').addClass("text-white");
-		$ ('#grandParkedUSD').removeClass("text-dark");
+		$('#grandParkedUSD').removeClass("bg-success bg-light text-dark").addClass("bg-danger text-white");
 	} else if (grandParkedUSD = 0) {
-		$('#grandParkedUSD').removeClass("bg-danger");
-		$('#grandParkedUSD').removeClass("bg-success");
-		$('#grandParkedUSD').addClass("bg-light");
-		$ ('#grandParkedUSD').addClass("text-dark");
-		$ ('#grandParkedUSD').removeClass("text-white");
+		$('#grandParkedUSD').removeClass("bg-danger bg-success text-white").addClass("bg-light text-dark");
 	} else {
-		$('#grandParkedUSD').removeClass("bg-danger");
-		$('#grandParkedUSD').removeClass("bg-light");
-		$('#grandParkedUSD').addClass("bg-success");
-		$ ('#grandParkedUSD').addClass("text-white");
-		$ ('#grandParkedUSD').removeClass("text-dark");
+		$('#grandParkedUSD').removeClass("bg-danger bg-light text-dark").addClass("bg-success text-white");
 	}
 
 	// Calculate rate
@@ -230,19 +178,19 @@ function ExpectBTC() {
 	while ( crashedBTC >= BTCCrashValue ) {
 		// calculate earnings from crashed point up to rebound point
 		var reboundedBTC = crashedBTC;
-		foundBreak = false;
+		var foundBreak = false;
 		while ( reboundedBTC <= BTCReboundValue ) {
 			// calculate earning on rebounded point
 			// var MyAssets = MyBTC * crashedBTC;
-			var collateralUSD = tiers[LoanTier].value; // /tiers[LoanTier].pct_coll;
-			var collateralBTC = collateralUSD/reboundedBTC;
-			var loanCost = tiers[LoanTier].value*tiers[LoanTier].pct_loan;
+			collateralUSD = tiers[LoanTier].value; // /tiers[LoanTier].pct_coll;
+			collateralBTC = collateralUSD/reboundedBTC;
+			loanCost = tiers[LoanTier].value*tiers[LoanTier].pct_loan;
 			loanCost = useCELLoan ? loanCost * 0.75 : loanCost;
-			var loaninterest = tiers[LoanTier].value * loan_pct["USDC"][useCEL ? "CEL" : "BTC"];
-			var loanTotal = loaninterest - loanCost;	
-			var percInterest = ( MyBTC - collateralBTC ) * loan_pct["BTC"][useCEL ? "CEL" : "BTC"];
-			var lostInterest = collateralBTC * loan_pct["BTC"][useCEL ? "CEL" : "BTC"];
-			var totalInterestBTC = percInterest - lostInterest;
+			loaninterest = tiers[LoanTier].value * loan_pct["USDC"][useCEL ? "CEL" : "BTC"];
+			loanTotal = loaninterest - loanCost;	
+			percInterest = ( MyBTC - collateralBTC ) * loan_pct["BTC"][useCEL ? "CEL" : "BTC"];
+			lostInterest = collateralBTC * loan_pct["BTC"][useCEL ? "CEL" : "BTC"];
+			totalInterestBTC = percInterest - lostInterest;
 		
 			var boughtBTCwithLoan = tiers[LoanTier].value / crashedBTC;
 
@@ -250,8 +198,8 @@ function ExpectBTC() {
 
 			// perdida vs falta de ganar aumentar
 
-			var grandTotalBTC = totalInterestBTC + boughtBTCwithLoan + loanTotalBTC - collateralBTC;
-			var grandTotalUSD = grandTotalBTC * reboundedBTC;
+			grandTotalBTC = totalInterestBTC + boughtBTCwithLoan + loanTotalBTC - collateralBTC;
+			grandTotalUSD = grandTotalBTC * reboundedBTC;
 
 			console.log('----');
 			console.log('crashedBTC: ' + crashedBTC + ' reboundedBTC: ' + reboundedBTC);
@@ -261,6 +209,8 @@ function ExpectBTC() {
 			console.log('percInterest: ' + percInterest, 'lostInterest: ' + lostInterest, 'totalInterestBTC: ' + totalInterestBTC);
 			console.log('boughtBTCwithLoan: ' + boughtBTCwithLoan);
 			console.log('grandTotalBTC: ' + grandTotalBTC, 'grandTotalUSD: ' + grandTotalUSD);
+
+			var breakPoint = null;
 
 			if (grandTotalBTC >= 0 ) {
 				if(!foundBreak) {
@@ -323,7 +273,6 @@ function RefreshBTCData() {
 	setTimeout(function(){
 		$('#RefreshBTC').removeAttr('disabled');
 	}, btnDisableTime);
-
 }
 
 $(document).ready(function() {
