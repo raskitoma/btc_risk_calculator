@@ -3,7 +3,7 @@ var BTCCrashValue = 50000;
 var BTCReboundValue = 100000;
 var MyBTC = 1;
 var MyAssets = MyBTC * BTCValue;
-var LoanTier = "tier_3";
+var LoanTier = "tier_1";
 var useCEL = false;
 var useCELLoan = false;
 var priceRate = 1000;
@@ -11,8 +11,8 @@ var expectedEarn = 0;
 var tableData = [];
 var table = null;
 var btnDisableTime = 10000;
-var crashPCT = 0.5;
-var reboundPCT = 1.5;
+var crashPCT = 0.85;
+var reboundPCT = 1.15;
 var tiers = {
 	"tier_1": {
 		"title": "LTB Ratio 4:1",
@@ -173,16 +173,18 @@ function ExpectBTC() {
 	// Calculate rate
 
 	tableData = [];
-	var crashedBTC = BTCValue;
+	var crashedBTC = BTCCrashValue;
 
-	while ( crashedBTC >= BTCCrashValue ) {
+	while ( crashedBTC <= BTCReboundValue ) {
 		// calculate earnings from crashed point up to rebound point
 		var reboundedBTC = crashedBTC;
 		var foundBreak = false;
 		while ( reboundedBTC <= BTCReboundValue ) {
 			// calculate earning on rebounded point
-			// var MyAssets = MyBTC * crashedBTC;
 			collateralUSD = tiers[LoanTier].value; // /tiers[LoanTier].pct_coll;
+
+			// collateralUSD = 50000 / 0.5;
+
 			collateralBTC = collateralUSD/reboundedBTC;
 			loanCost = tiers[LoanTier].value*tiers[LoanTier].pct_loan;
 			loanCost = useCELLoan ? loanCost * 0.75 : loanCost;
@@ -201,14 +203,14 @@ function ExpectBTC() {
 			grandTotalBTC = totalInterestBTC + boughtBTCwithLoan + loanTotalBTC - collateralBTC;
 			grandTotalUSD = grandTotalBTC * reboundedBTC;
 
-			console.log('----');
-			console.log('crashedBTC: ' + crashedBTC + ' reboundedBTC: ' + reboundedBTC);
-			console.log('collateralUSD: ' + collateralUSD, 'collateralBTC: ' + collateralBTC);
-			console.log('loanCost: ' + loanCost, 'loaninterest: ' + loaninterest, 'loanTotal: ' + loanTotal);
-			console.log('loanTotalBTC: ' + loanTotalBTC);
-			console.log('percInterest: ' + percInterest, 'lostInterest: ' + lostInterest, 'totalInterestBTC: ' + totalInterestBTC);
-			console.log('boughtBTCwithLoan: ' + boughtBTCwithLoan);
-			console.log('grandTotalBTC: ' + grandTotalBTC, 'grandTotalUSD: ' + grandTotalUSD);
+			// console.log('----');
+			// console.log('crashedBTC: ' + crashedBTC + ' reboundedBTC: ' + reboundedBTC);
+			// console.log('collateralUSD: ' + collateralUSD, 'collateralBTC: ' + collateralBTC);
+			// console.log('loanCost: ' + loanCost, 'loaninterest: ' + loaninterest, 'loanTotal: ' + loanTotal);
+			// console.log('loanTotalBTC: ' + loanTotalBTC);
+			// console.log('percInterest: ' + percInterest, 'lostInterest: ' + lostInterest, 'totalInterestBTC: ' + totalInterestBTC);
+			// console.log('boughtBTCwithLoan: ' + boughtBTCwithLoan);
+			// console.log('grandTotalBTC: ' + grandTotalBTC, 'grandTotalUSD: ' + grandTotalUSD);
 
 			var breakPoint = null;
 
@@ -219,7 +221,6 @@ function ExpectBTC() {
 				} else {
 					breakPoint = "Check";
 				}
-
 				var item_table = [
 					crashedBTC,
 					reboundedBTC,
@@ -227,12 +228,14 @@ function ExpectBTC() {
 					grandTotalUSD.toFixed(2),
 					breakPoint
 				];
+	
 				tableData.push(item_table);
+	
 			}
 
 			reboundedBTC += priceRate;
 		}
-		crashedBTC -= priceRate;
+		crashedBTC += priceRate;
 	}
 
 	console.table(tableData);
